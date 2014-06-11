@@ -1,4 +1,3 @@
-
 #WERCKER_NPM_VERSION_VERSION_TYPE=`get_option version_type`
 if [ -z "$WERCKER_NPM_VERSION_VERSION_TYPE"  ]; then
     export WERCKER_NPM_VERSION_VERSION_TYPE="patch";
@@ -14,7 +13,8 @@ LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 echo " - latest tag: $LATEST_TAG"
 
 echo "Step2: check the diff between the latest tag and the current version."
-if [ git diff $LATEST_TAG --exit-code --quiet ];
+git diff $LATEST_TAG --exit-code --quiet
+if [ $? -ne 0  ];
 then
  echo " - A difference exists between the current branch [ $WERCKER_GIT_BRANCH ] and tag [ $LATEST_TAG ]"
  echo "Step3: bumping version"
