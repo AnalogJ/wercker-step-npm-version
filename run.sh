@@ -1,11 +1,12 @@
-VERSION_TYPE=`get_option version_type`
-if [ -z "$VERSION_TYPE"  ]; then
-    export VERSION_TYPE="patch";
+env
+#WERCKER_NPM_VERSION_VERSION_TYPE=`get_option version_type`
+if [ -z "WERCKER_NPM_VERSION_VERSION_TYPE"  ]; then
+    export WERCKER_NPM_VERSION_VERSION_TYPE="patch";
 fi
 
-VERSION_MESSAGE=`get_option version_message`
-if [ -z "$VERSION_MESSAGE"  ]; then
-    export VERSION_MESSAGE="Automated version bump by wercker";
+#WERCKER_NPM_VERSION_VERSION_MESSAGE=`get_option version_message`
+if [ -z "$WERCKER_NPM_VERSION_VERSION_MESSAGE"  ]; then
+    export WERCKER_NPM_VERSION_VERSION_MESSAGE="Automated version bump by wercker";
 fi
 
 echo "Step1: get the latest tag in the repo"
@@ -18,7 +19,7 @@ then
  echo " - A difference exists between the current branch () and tag ($LATEST_TAG)"
  echo "Step3: bumping version"
  #bump the version
- npm version $VERSION_TYPE -m "$VERSION_MESSAGE"
+ npm version $WERCKER_NPM_VERSION_VERSION_TYPE -m "$WERCKER_NPM_VERSION_VERSION_MESSAGE"
 else
  echo " - No change. exiting..."
 fi
