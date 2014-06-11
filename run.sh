@@ -8,6 +8,10 @@ if [ -z "$WERCKER_NPM_VERSION_VERSION_MESSAGE"  ]; then
     export WERCKER_NPM_VERSION_VERSION_MESSAGE="Automated version bump by wercker";
 fi
 
+echo "Step0: do full pull of the git repo"
+git pull --all
+git pull --tags
+
 echo "Step1: get the latest tag in the repo"
 LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 echo " - latest tag: $LATEST_TAG"
