@@ -1,6 +1,6 @@
-env
+
 #WERCKER_NPM_VERSION_VERSION_TYPE=`get_option version_type`
-if [ -z "WERCKER_NPM_VERSION_VERSION_TYPE"  ]; then
+if [ -z "$WERCKER_NPM_VERSION_VERSION_TYPE"  ]; then
     export WERCKER_NPM_VERSION_VERSION_TYPE="patch";
 fi
 
