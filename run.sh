@@ -19,7 +19,7 @@ then
  echo " - A difference exists between the current branch [ $WERCKER_GIT_BRANCH ] and tag [ $LATEST_TAG ]"
  echo "Step3: bumping version"
  #bump the version
- #npm version $WERCKER_NPM_VERSION_VERSION_TYPE -m "$WERCKER_NPM_VERSION_VERSION_MESSAGE"
+ npm version $WERCKER_NPM_VERSION_VERSION_TYPE -m "$WERCKER_NPM_VERSION_VERSION_MESSAGE"
 else
  echo " - No change. exiting..."
 fi
