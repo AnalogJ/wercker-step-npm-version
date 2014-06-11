@@ -14,8 +14,7 @@ LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
 echo " - latest tag: $LATEST_TAG"
 
 echo "Step2: check the diff between the latest tag and the current version."
-git diff $LATEST_TAG HEAD
-git diff $LATEST_TAG $WERCKER_GIT_BRANCH --exit-code --quiet
+git diff $LATEST_TAG HEAD --exit-code --quiet
 if [ $? -ne 0  ];
 then
  echo " - A difference exists between the current branch [ $WERCKER_GIT_BRANCH ] and tag [ $LATEST_TAG ]"
