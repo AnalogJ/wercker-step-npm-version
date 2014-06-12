@@ -21,7 +21,7 @@ if [ $? -ne 0 ]; then
  echo "Step3: bumping version"
  #bump the version
  echo "$WERCKER_NPM_VERSION_VERSION_TYPE $WERCKER_NPM_VERSION_VERSION_MESSAGE"
- #npm version $WERCKER_NPM_VERSION_VERSION_TYPE -m "$WERCKER_NPM_VERSION_VERSION_MESSAGE"
+ npm version $WERCKER_NPM_VERSION_VERSION_TYPE -m "$WERCKER_NPM_VERSION_VERSION_MESSAGE"
 else
  echo " - No change. exiting..."
 fi
