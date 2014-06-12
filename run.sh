@@ -25,6 +25,3 @@ if [ $? -ne 0 ]; then
 else
  echo " - No change. exiting..."
 fi
-
-echo "$output $?"
-
