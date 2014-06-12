@@ -8,6 +8,15 @@ if [ -z "$WERCKER_NPM_VERSION_VERSION_MESSAGE"  ]; then
     export WERCKER_NPM_VERSION_VERSION_MESSAGE="Automated version bump by wercker";
 fi
 
+if [ -z "$WERCKER_NPM_VERSION_ONLY_WHEN"  ]; then
+    export WERCKER_NPM_VERSION_ONLY_WHEN="development";
+fi
+
+if [ ! "$WERCKER_NPM_VERSION_ONLY_WHEN" = "$WERCKER_GIT_BRANCH" ]; then
+    echo "exiting. $WERCKER_NPM_VERSION_ONLY_WHEN  != $WERCKER_GIT_BRANCH"
+    setMessage "skipping, version will only be bumped on specified branch [ $WERCKER_NPM_VERSION_ONLY_WHEN ]"
+    exit 0
+fi
 
 echo "Step1: get the latest tag in the repo"
 LATEST_TAG=$(git describe --tags $(git rev-list --tags --max-count=1))
@@ -23,5 +32,6 @@ if [ $? -ne 0 ]; then
  echo "$WERCKER_NPM_VERSION_VERSION_TYPE $WERCKER_NPM_VERSION_VERSION_MESSAGE"
  npm version $WERCKER_NPM_VERSION_VERSION_TYPE -m "$WERCKER_NPM_VERSION_VERSION_MESSAGE"
 else
+ setMessage "skipping, no commits since latest tag."
  echo " - No change. exiting..."
 fi
